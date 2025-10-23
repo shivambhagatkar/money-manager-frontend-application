@@ -1,15 +1,11 @@
-<<<<<<< HEAD
-import {useContext, useEffect} from "react";
-=======
-    import {useContext, useEffect} from "react";
->>>>>>> 4d37556296ca3eb8443905ef8a0e1d7ad6e99dc7
-import {AppContext} from "../context/AppContext.jsx";
-import {useNavigate} from "react-router-dom";
+import { useContext, useEffect } from "react";
+import { AppContext } from "../context/AppContext.jsx";
+import { useNavigate } from "react-router-dom";
 import axiosConfig from "../util/axiosConfig.jsx";
-import {API_ENDPOINTS} from "../util/apiEndpoints.js";
+import { API_ENDPOINTS } from "../util/apiEndpoints.js";
 
 export const useUser = () => {
-    const {user, setUser, clearUser} = useContext(AppContext);
+    const { user, setUser, clearUser } = useContext(AppContext);
     const navigate = useNavigate();
 
     useEffect(() => {
@@ -26,21 +22,19 @@ export const useUser = () => {
                 if (isMounted && response.data) {
                     setUser(response.data);
                 }
-
-            }catch (error) {
+            } catch (error) {
                 console.log("Failed to fetch the user info", error);
                 if (isMounted) {
                     clearUser();
                     navigate("/login");
                 }
             }
-        }
+        };
 
         fetchUserInfo();
 
         return () => {
             isMounted = false;
-        }
+        };
     }, [user, setUser, clearUser, navigate]);
-
-}
+};

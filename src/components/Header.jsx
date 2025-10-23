@@ -1,20 +1,15 @@
-import {useState} from "react";
-import {assets} from "../assets/assets.js";
-import {Link} from "react-router-dom";
-import {Menu, X} from "lucide-react";
+import { useState } from "react";
+import { assets } from "../assets/assets.js";
+import { Link } from "react-router-dom";
+import { Menu, X } from "lucide-react";
 
 const Header = () => {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
 
     const navLinks = [
         { name: 'Home', to: '/home' },
-<<<<<<< HEAD
-//         { name: 'About us', to: '/about  ' },
+//         { name: 'About us', to: '/about' },
 //         { name: 'Contact us', to: '/contact' }
-=======
-        { name: 'About us', to: '/about' },
-        { name: 'Contact us', to: '/contact' }
->>>>>>> 4d37556296ca3eb8443905ef8a0e1d7ad6e99dc7
     ];
 
     return (
@@ -30,7 +25,7 @@ const Header = () => {
                     {/* Desktop Navigation */}
                     <nav className="hidden lg:flex items-center space-x-8">
                         {navLinks.map((link) => (
-                            <Link to={link.to} key={link.name} href={link.href} className="text-gray-600 hover:text-purple-600 transition-colors">
+                            <Link to={link.to} key={link.name} className="text-gray-600 hover:text-purple-600 transition-colors">
                                 {link.name}
                             </Link>
                         ))}
@@ -66,20 +61,20 @@ const Header = () => {
                     <div className="container mx-auto px-4 py-4">
                         <nav className="flex flex-col space-y-4">
                             {navLinks.map((link) => (
-                                <a key={link.name} href={link.href} className="text-gray-600 hover:text-purple-600 transition-colors">
+                                <Link key={link.name} to={link.to} className="text-gray-600 hover:text-purple-600 transition-colors">
                                     {link.name}
-                                </a>
+                                </Link>
                             ))}
                             <div className="flex flex-col space-y-3 pt-4 border-t border-gray-100">
-                                <a href="#" className="text-gray-600 hover:text-purple-600 transition-colors w-full text-left">
+                                <Link to="/login" className="text-gray-600 hover:text-purple-600 transition-colors w-full text-left">
                                     Login
-                                </a>
-                                <a
-                                    href="#"
+                                </Link>
+                                <Link
+                                    to="/signup"
                                     className="bg-purple-600 text-white px-4 py-2 rounded-lg font-semibold hover:bg-purple-700 transition-colors text-center"
                                 >
                                     Get Started
-                                </a>
+                                </Link>
                             </div>
                         </nav>
                     </div>
