@@ -20,10 +20,6 @@
     "react-hot-toast": "^2.5.2",
     "react-router-dom": "^7.6.3",
     "recharts": "^3.0.2",
-<<<<<<< HEAD
-=======
-    "start": "^5.1.0",
->>>>>>> 4d37556296ca3eb8443905ef8a0e1d7ad6e99dc7
     "tailwindcss": "^4.1.11"
   },
   "devDependencies": {
