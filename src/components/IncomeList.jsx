@@ -22,7 +22,43 @@ const IncomeList = ({transactions, onDelete, onDownload, onEmail}) => {
         }
     }
     return (
+<<<<<<< HEAD
 
+=======
+        <div className="card">
+            <div className="flex items-center justify-between">
+                <h5 className="text-lg">Income Sources</h5>
+                <div className="flex items-center justify-end gap-2">
+                    <button disabled={loading} className="card-btn" onClick={handleEmail}>
+                        {loading ? (
+                            <>
+                                <LoaderCircle className="w-4 h-4 animate-spin"/>
+                                Emailing...
+                            </>
+                        ): (
+                            <>
+                                <Mail size={15} className="text-base" />
+                                Email
+                            </>
+                        )}
+                    </button>
+                    <button disabled={loading} className="card-btn" onClick={handleDownload}>
+                        {loading ? (
+                            <>
+                                <LoaderCircle className="w-4 h-4 animate-spin"/>
+                                Downloading...
+                            </>
+                        ): (
+                            <>
+                                <Download size={15} className="text-base" />
+                                Download
+                            </>
+                        )}
+
+                    </button>
+                </div>
+            </div>
+>>>>>>> 4d37556296ca3eb8443905ef8a0e1d7ad6e99dc7
 
             <div className="grid grid-cols-1 md:grid-cols-2">
                 {/* display the incomes */}
@@ -38,6 +74,10 @@ const IncomeList = ({transactions, onDelete, onDownload, onEmail}) => {
                     />
                 ))}
             </div>
+<<<<<<< HEAD
+=======
+        </div>
+>>>>>>> 4d37556296ca3eb8443905ef8a0e1d7ad6e99dc7
     )
 }
 

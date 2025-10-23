@@ -1,5 +1,9 @@
+<<<<<<< HEAD
 export const BASE_URL = "https://money-manager-backend-nzec.onrender.com/api/v1.0";
 //export const BASE_URL = "http://localhost:8080/api/v1.0";
+=======
+export const BASE_URL = "http://localhost:8080/api/v1.0";
+>>>>>>> 4d37556296ca3eb8443905ef8a0e1d7ad6e99dc7
 const CLOUDINARY_CLOUD_NAME = "dhadf5h7j";
 
 export const API_ENDPOINTS = {

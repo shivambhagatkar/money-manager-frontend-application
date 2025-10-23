@@ -8,8 +8,13 @@ const Header = () => {
 
     const navLinks = [
         { name: 'Home', to: '/home' },
+<<<<<<< HEAD
 //         { name: 'About us', to: '/about  ' },
 //         { name: 'Contact us', to: '/contact' }
+=======
+        { name: 'About us', to: '/about' },
+        { name: 'Contact us', to: '/contact' }
+>>>>>>> 4d37556296ca3eb8443905ef8a0e1d7ad6e99dc7
     ];
 
     return (
