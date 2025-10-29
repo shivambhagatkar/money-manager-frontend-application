@@ -19,28 +19,28 @@ const Filter = () => {
     const [transactions, setTransactions] = useState([]);
     const [loading, setLoading] = useState(false);
 
-    const handleSearch = async (e) => {
-        e.preventDefault();
-        setLoading(true);
-        try {
-            const response = await axiosConfig.post(API_ENDPOINTS.APPLY_FILTERS, {
-                type,
-                startDate,
-                endDate,
-                keyword,
-                sortField,
-                sortOrder
-            });
-            console.log('transactions: ', response.data);
-            setTransactions(response.data);
-        }catch (error) {
-            console.error('Failed to fetch transactions: ', error);
-            toast.error(error.message || "Failed to fetch transactions. Please try again.");
-        }finally {
-            setLoading(false);
-        }
+   const handleSearch = async (e) => {
+       e.preventDefault();
+       setLoading(true);
+       try {
+           const response = await axiosConfig.post(API_ENDPOINTS.APPLY_FILTERS, {
+               type,
+               startDate: startDate ? `${startDate}T00:00:00` : null,
+               endDate: endDate ? `${endDate}T23:59:59` : null,
+               keyword,
+               sortFilter: sortField, // ✅ rename this
+               sortOrder
+           });
+           console.log('transactions: ', response.data);
+           setTransactions(response.data);
+       } catch (error) {
+           console.error('Failed to fetch transactions: ', error);
+           toast.error(error.message || "Failed to fetch transactions. Please try again.");
+       } finally {
+           setLoading(false);
+       }
+   };
 
-    }
 
     return (
         <Dashboard activeMenu="Filters">

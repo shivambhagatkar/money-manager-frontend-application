@@ -61,58 +61,61 @@ const Expense = () => {
     };
 
 
-    // Handle Add Expense
-    const handleAddExpense = async (expense) => {
-        const { name, categoryId, amount, date, icon } = expense; // Changed 'category' to 'categoryId'
+  // Handle Add Expense
+  const handleAddExpense = async (expense) => {
+      const { name, categoryId, amount, date, icon } = expense;
 
-        if (!name.trim()) {
-            toast.error("Name is required.");
-            return;
-        }
+      if (!name.trim()) {
+          toast.error("Name is required.");
+          return;
+      }
 
-        // Validation Checks
-        if (!categoryId) { // Validate categoryId now
-            toast.error("Category is required.");
-            return;
-        }
+      if (!categoryId) {
+          toast.error("Category is required.");
+          return;
+      }
 
-        if (!amount || isNaN(amount) || Number(amount) <= 0) {
-            toast.error("Amount should be a valid number greater than 0.");
-            return;
-        }
+      if (!amount || isNaN(amount) || Number(amount) <= 0) {
+          toast.error("Amount should be a valid number greater than 0.");
+          return;
+      }
 
-        if (!date) {
-            toast.error("Date is required.");
-            return;
-        }
+      if (!date) {
+          toast.error("Date is required.");
+          return;
+      }
 
-        const today = new Date().toISOString().split('T')[0];
-        if (date > today) {
-            toast.error('Date cannot be in the future');
-            return;
-        }
+      // Date validation using Date objects
+      const selectedDate = new Date(date);
+      const now = new Date();
+      if (selectedDate > now) {
+          toast.error("Date cannot be in the future");
+          return;
+      }
 
-        try {
-            await axiosConfig.post(API_ENDPOINTS.ADD_EXPENSE, {
-                name,
-                categoryId, // Pass categoryId to the API
-                amount: Number(amount), // Ensure amount is a number
-                date,
-                icon,
-            });
+      try {
+          // Send date in ISO format so backend LocalDateTime parsing works
+          await axiosConfig.post(API_ENDPOINTS.ADD_EXPENSE, {
+              name,
+              categoryId,
+              amount: Number(amount),
+              date: selectedDate.toISOString(), // ✅ ISO format
+              icon,
+          });
 
-            setOpenAddExpenseModal(false);
-            toast.success("Expense added successfully");
-            fetchExpenseDetails(); // Refresh expense list
-            fetchExpenseCategories();
-        } catch (error) {
-            console.error(
-                "Error adding expense:",
-                error.response?.data?.message || error.message
-            );
-            toast.error(error.response?.data?.message || "Failed to add expense.");
-        }
-    };
+          setOpenAddExpenseModal(false);
+          toast.success("Expense added successfully");
+          fetchExpenseDetails(); // Refresh expense list
+          fetchExpenseCategories();
+      } catch (error) {
+          console.error(
+              "Error adding expense:",
+              error.response?.data?.message || error.message
+          );
+          toast.error(error.response?.data?.message || "Failed to add expense.");
+      }
+  };
+
 
     // Delete Expense
     const deleteExpense = async (id) => {
