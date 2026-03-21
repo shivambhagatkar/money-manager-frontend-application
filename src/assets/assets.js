@@ -8,7 +8,7 @@ export const assets = {
     login_bg,
     landing,
 }
-
+ 
 export const SIDE_BAR_DATA = [
     {
         id: "01",
